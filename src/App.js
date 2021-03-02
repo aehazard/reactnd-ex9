@@ -9,22 +9,26 @@ This exercise will help you practice many of your newly aquired React skills.
 The instructions are included in the `instructions.md` file.
 */
 
-const users = [{ username: 'Amy' }, { username: 'John' }];
-
-const messages = [
-  { username: 'Amy', text: 'Hi, Jon!' },
-  { username: 'Amy', text: 'How are you?' },
-  { username: 'John', text: 'Hi, Amy! Good, you?' },
-];
-
 class App extends Component {
   /*
   If the user did not type anything, he/she should not be
   allowed to submit.
   */
-  isDisabled = () => {
-    return false;
-  };
+  state = {
+    users: [{ username: 'Amy' }, { username: 'John' }],
+    messages: [
+      { username: 'Amy', text: 'Hi, Jon!' },
+      { username: 'Amy', text: 'How are you?' },
+      { username: 'John', text: 'Hi, Amy! Good, you?' },
+    ]
+  }
+
+  handleMessageSend = (newMessage) => {
+    console.log(`Adding message '${newMessage.text}' from ${newMessage.username}`)
+    this.setState((currentState)=>({
+      messages : [...currentState.messages, newMessage]
+    }))
+  }
 
   render() {
     return (
@@ -34,7 +38,7 @@ class App extends Component {
           <h1 className="App-title">ReactND - Coding Practice</h1>
         </header>
         <div className="container">
-          {users.map((user) => (<ChatWindow messages={messages} user={user}/>))}
+          {this.state.users.map((user) => (<ChatWindow messages={this.state.messages} user={user} handleMessageSend={this.handleMessageSend}/>))}
         </div>
       </div>
     );
