@@ -16,7 +16,8 @@ class ComposeMessage extends Component {
     }))
   }
 
-  handleClick = () => {
+  handleClick = (event) => {
+    event.preventDefault()
     const newMessage = {
       username: this.props.user.username,
       text: this.state.messageContent
