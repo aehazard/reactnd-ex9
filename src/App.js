@@ -38,7 +38,14 @@ class App extends Component {
           <h1 className="App-title">ReactND - Coding Practice</h1>
         </header>
         <div className="container">
-          {this.state.users.map((user) => (<ChatWindow messages={this.state.messages} user={user} handleMessageSend={this.handleMessageSend}/>))}
+          {this.state.users.map((user) => (
+            <ChatWindow
+              key={user.username}
+              messages={this.state.messages}
+              user={user}
+              handleMessageSend={this.handleMessageSend}
+            />
+            ))}
         </div>
       </div>
     );
